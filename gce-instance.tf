@@ -1,10 +1,10 @@
 resource "google_compute_instance" "vm_instance" {
-  name         = "terraform-instance"
-  machine_type = "f1-micro"
+  name         = "${var.instance_name}"
+  machine_type = "${var.machine_type}"
 
   boot_disk {
     initialize_params {
-      image = "debian-cloud/debian-9"
+      image = "${var.image_type}"
     }
   }
 
@@ -15,7 +15,6 @@ resource "google_compute_instance" "vm_instance" {
     }
   }
   metadata = {
-      sshKeys = "ubuntu:ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGTxKpE4LzojL6Vo7BVFuHFNIbdRZHa/S2q98eMd7n8G encodeflush@lx-02013529" 
+      sshKeys = "${var.ssh_user}:${var.ssh_key}" 
   }
-
 }
