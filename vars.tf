@@ -1,36 +1,31 @@
-variable "shared_credentials_file" {
-  type = "string"
-}
-
-variable "project" {
-  type = "string"
-}
-
-variable "region" {
-  type    = "string"
-}
-
-variable "zone" {
-   type    = "string"
-}
-
 variable "machine_type" {
-   type    = "string"
+   type    = string
 }
 
 variable "image_type" {
-   type    = "string"
+   type    = string
 }
 
-variable "instance_name" {
-  type = "string"
+variable "master_name" {
+  type = string
 }
 
-variable "ssh_user" {
-  type = "string"
+variable "worker_name" {
+  type = string
 }
 
-variable "ssh_key" {
-  type = "string"
+variable "master_count" {
+  default = 1
 }
 
+variable "worker_count" {
+  default = 1
+}
+
+#variable "ssh_user" {
+#  type = string
+#}
+
+#variable "ssh_key" {
+#  type = string
+#}
