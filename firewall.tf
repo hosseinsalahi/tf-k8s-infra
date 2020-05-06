@@ -1,6 +1,6 @@
 resource "google_compute_firewall" "lb-ssh" {
   name    = "loadbalancer-ssh"
-  network =  google_compute_network.k8s-nw.self_link
+  network = google_compute_network.k8s-nw.self_link
 
   allow {
     protocol = "tcp"
@@ -10,13 +10,13 @@ resource "google_compute_firewall" "lb-ssh" {
   allow {
     protocol = "icmp"
   }
-  
+
   target_tags = ["ssh"]
 }
 
 resource "google_compute_firewall" "lb-https" {
   name    = "loadbalancer-https"
-  network =  google_compute_network.k8s-nw.self_link
+  network = google_compute_network.k8s-nw.self_link
 
   allow {
     protocol = "tcp"
