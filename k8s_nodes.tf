@@ -17,8 +17,8 @@ resource "google_compute_instance" "k8s_master" {
 }
 
 resource "google_compute_instance" "k8s_worker" {
-  count = var.worker_count
-  name  = "${var.worker_name}${count.index + 1}"
+  count        = var.worker_count
+  name         = "${var.worker_name}${count.index + 1}"
   machine_type = var.k8s_machine_type
 
   tags = ["k8s", "worker"]
