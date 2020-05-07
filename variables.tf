@@ -41,3 +41,7 @@ variable "master_count" {
 variable "worker_count" {
   default = 1
 }
+
+variable "inventory_file" {
+  description = "Where to store the generated inventory file"
+}
