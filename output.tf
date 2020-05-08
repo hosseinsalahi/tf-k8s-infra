@@ -9,3 +9,7 @@ output "worker_ip" {
 output "lb_ip" {
   value = google_compute_instance.k8s_loadbalancer.*.network_interface.0.network_ip
 }
+
+output "hosts" {
+	value = "\n${data.template_file.inventory.rendered}"
+}
