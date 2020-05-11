@@ -43,5 +43,5 @@ variable "worker_count" {
 }
 
 variable "bucket" {
-	type = string
+  type = string
 }

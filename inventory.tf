@@ -6,9 +6,10 @@ data "template_file" "inventory" {
   template = file("${path.module}/templates/inventory.tpl")
 
   vars = {
+    connection_strings_lb     = join("\n", formatlist("%s ansible_host=%s", google_compute_instance.k8s_loadbalancer.*.name, google_compute_instance.k8s_loadbalancer.network_interface.0.access_config.0.nat_ip))
     connection_strings_master = join("\n", formatlist("%s ansible_host=%s", google_compute_instance.k8s_master.*.name, google_compute_instance.k8s_master.*.network_interface.0.network_ip))
-    connection_strings_node   = join("\n", formatlist("%s ansible_host=%s", google_compute_instance.k8s_master.*.name, google_compute_instance.k8s_master.*.network_interface.0.network_ip))
-    connection_strings_etcd   = join("\n", formatlist("%s ansible_host=%s", google_compute_instance.k8s_master.*.name, google_compute_instance.k8s_master.*.network_interface.0.network_ip))
+    connection_strings_node   = join("\n", formatlist("%s ansible_host=%s", google_compute_instance.k8s_worker.*.name, google_compute_instance.k8s_worker.*.network_interface.0.network_ip))
+    list_bastion              = join("\n", google_compute_instance.k8s_loadbalancer.*.name)
     list_master               = join("\n", google_compute_instance.k8s_master.*.name)
     list_node                 = join("\n", google_compute_instance.k8s_worker.*.name)
     list_etcd                 = join("\n", google_compute_instance.k8s_master.*.name)

@@ -7,9 +7,9 @@ output "worker_ip" {
 }
 
 output "lb_ip" {
-  value = google_compute_instance.k8s_loadbalancer.*.network_interface.0.network_ip
+  value = google_compute_instance.k8s_loadbalancer.network_interface.0.access_config.0.nat_ip
 }
 
 output "hosts" {
-	value = "\n${data.template_file.inventory.rendered}"
+  value = "\n${data.template_file.inventory.rendered}"
 }

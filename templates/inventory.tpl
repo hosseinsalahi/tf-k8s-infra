@@ -1,9 +1,10 @@
 [all]
 ${connection_strings_master}
 ${connection_strings_node}
-${connection_strings_etcd}
+${connection_strings_lb}
 
 [bastion]
+${list_bastion}
 
 [kube-master]
 ${list_master}
