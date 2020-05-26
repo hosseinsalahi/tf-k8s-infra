@@ -20,7 +20,7 @@ resource "google_compute_firewall" "lb-https" {
 
   allow {
     protocol = "tcp"
-    ports    = ["443"]
+    ports    = ["443", "6443", "8443"]
   }
 
   target_tags = ["lb"]
