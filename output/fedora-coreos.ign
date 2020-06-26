@@ -1,0 +1,39 @@
+{
+  "ignition": {
+    "config": {
+      "replace": {
+        "source": null,
+        "verification": {}
+      }
+    },
+    "security": {
+      "tls": {}
+    },
+    "timeouts": {},
+    "version": "3.0.0"
+  },
+  "passwd": {},
+  "storage": {
+    "files": [
+      {
+        "group": {},
+        "path": "/opt/bootstrap.sh",
+        "user": {},
+        "contents": {
+          "source": "data:,%23!%2Fbin%2Fbash%0Aset%20-e%0A%0ABINDIR%3D%22%2Fopt%2Fbin%22%0APYPY_VERSION%3D7.3.1%0APYPI_URL%3D%22https%3A%2F%2Fbitbucket.org%2Fpypy%2Fpypy%2Fdownloads%2Fpypy3.6-v%24%7BPYPY_VERSION%7D-linux64.tar.bz2%22%0APYPI_HASH%3Df67cf1664a336a3e939b58b3cabfe47d893356bdc01f2e17bc912aaa6605db12%0A%0Amkdir%20-p%20%24BINDIR%0A%0Acd%20%24BINDIR%0A%0Aif%20%5B%5B%20-e%20%24BINDIR%2F.bootstrapped%20%5D%5D%3B%20then%0A%20%20exit%200%0Afi%0A%0ATAR_FILE%3Dpyp.tar.bz2%0Awget%20-O%20%22%24%7BTAR_FILE%7D%22%20%22%24%7BPYPI_URL%7D%22%0Aecho%20%22%24%7BPYPI_HASH%7D%20%24%7BTAR_FILE%7D%22%20%7C%20sha256sum%20-c%20-%0Atar%20-xjf%20%22%24%7BTAR_FILE%7D%22%20%26%26%20rm%20%22%24%7BTAR_FILE%7D%22%0Amv%20-n%20%22pypy3.6-v%24%7BPYPY_VERSION%7D-linux64%22%20pypy3%0A%0Aln%20-s%20.%2Fpypy3%2Fbin%2Fpypy3%20python%0A%24BINDIR%2Fpython%20--version%0A%0Atouch%20%24BINDIR%2F.bootstrapped%0A",
+          "verification": {}
+        },
+        "mode": 448
+      }
+    ]
+  },
+  "systemd": {
+    "units": [
+      {
+        "contents": "[Unit]\nDescription= Boostrap Fedora CoreOS\n\n[Service]\nType=oneshot\nExecStart=\"/usr/bin/bash /opt/bootstrap.sh\"\n\n[Install]\nWantedBy=multi-user.target\n",
+        "enabled": true,
+        "name": "bootstrap.service"
+      }
+    ]
+  }
+}
