@@ -1,12 +1,12 @@
-resource "google_compute_instance" "k8s_loadbalancer" {
-  name         = var.lb_name
-  machine_type = var.lb_machine_type
+resource "google_compute_instance" "k8s_bastion" {
+  name         = var.bastion_name
+  machine_type = var.bastion_machine_type
 
   tags = ["k8s", "lb", "ssh"]
 
   boot_disk {
     initialize_params {
-      image = var.lb_image_type
+      image = var.bastion_image_type
     }
   }
 

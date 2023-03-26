@@ -14,11 +14,11 @@ variable "k8s_image_type" {
   type = string
 }
 
-variable "lb_image_type" {
+variable "bastion_image_type" {
   type = string
 }
 
-variable "lb_machine_type" {
+variable "bastion_machine_type" {
   type = string
 }
 
@@ -30,7 +30,7 @@ variable "worker_name" {
   type = string
 }
 
-variable "lb_name" {
+variable "bastion_name" {
   type = string
 }
 
@@ -40,4 +40,8 @@ variable "master_count" {
 
 variable "worker_count" {
   default = 1
+}
+
+variable "bucket" {
+  type = string
 }
